@@ -40,17 +40,15 @@ function Swipe() {
   const openWidth = actionsBtns * minWidth + (actionsBtns - 1) * gapWidth; // calculate container width when open
 
   // Store the container width for calculations
-  const contWidth = swipeRef?.current?.offsetWidth
-    ? swipeRef.current.offsetWidth
-    : "";
+  const contWidth = swipeRef?.current ? swipeRef.current.offsetWidth : "";
 
-  function onPanStart(event, info) {
+  function onPanStart(event: any, info: any) {
     // console.log(totalOffset);
     // setTotalOffset(-animateWidth);
     setAnimateWidth(undefined);
   }
 
-  function onPan(event, info) {
+  function onPan(event: any, info: { offset: { x: number } }) {
     // store the totla offset of this movement plus the last movement (inverted by -1)
     let totalOffset = info.offset.x + endOffset;
     // clamp the value to the max cointainer width
@@ -76,7 +74,7 @@ function Swipe() {
   }
 
   // What to do after panning ends
-  function onPanEnd(event, info) {
+  function onPanEnd(event: any, info: { offset: { x: number } }) {
     const totalRatio = totalOffset / contWidth; // total movement of tile within container
     const moveRatio = info.offset.x / contWidth; // movement of tile this time
     console.log(
@@ -146,7 +144,11 @@ function Swipe() {
           width: -totalOffset,
         }}
         animate={{
-          marginLeft: animateWidth < gapWidth ? 0 : undefined,
+          marginLeft: animateWidth
+            ? animateWidth < gapWidth
+              ? 0
+              : undefined
+            : undefined,
           width: animateWidth,
           gap: primary ? "0px" : `${gapWidth}px`,
         }}
