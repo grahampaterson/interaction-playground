@@ -1,0 +1,62 @@
+.main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200, 15%, 85%);
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  aspect-ratio: 375/812;
+  height: 90vh;
+  background-color: hsl(200, 15%, 95%);
+  border-radius: 32px;
+}
+
+.content {
+  margin-top: 62px;
+  padding: 16px;
+}
+
+.swipeWrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.tile {
+  min-width: 100%;
+  background-color: white;
+  min-height: 100px;
+  border-radius: 16px;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.actionsWrapper {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  gap: 8px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  position: relative;
+  background-color: red;
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+}

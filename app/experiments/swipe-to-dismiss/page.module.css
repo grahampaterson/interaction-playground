@@ -1,0 +1,47 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.screenFrame {
+    width: 375px;
+    display: flex;
+    height: 812px;
+    background-color: hsl(200, 15%, 90%);
+    border-radius: 12px;
+    overflow-x: hidden;
+    flex-direction: column;
+}
+
+.rowOuter {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.rowContent {
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    position: relative;
+}
+
+.dismiss {
+    height: 100%;
+    min-width: 0px;
+    flex: 1;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(0, 80%, 80%);
+
+}
