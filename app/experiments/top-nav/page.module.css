@@ -1,0 +1,96 @@
+.main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200, 15%, 85%);
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  aspect-ratio: 375/812;
+  height: 90vh;
+  background-color: hsl(200, 15%, 95%);
+  border-radius: 32px;
+  padding-top: 24px;
+}
+
+.topNav {
+  display: flex;
+  height: 48px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.navLabel {
+  flex: 2 0 0;
+  align-items: center;
+  justify-content: center;
+  font-weight: 550;
+  font-size: 15px;
+  display: flex;
+}
+
+.navPremiumTag {
+  background-color: hsl(51, 54%, 73%);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.navLeft {
+  flex: 1 0 0;
+}
+
+.navRight {
+  display: flex;
+  gap: 8px;
+  flex: 1 0 0;
+  justify-content: flex-end;
+}
+
+.pageTop {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  gap: 4px;
+}
+
+.balanceRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.balanceAmount {
+  font-size: 32px;
+  font-weight: 550;
+}
+
+.changeAmount {
+  font-weight: 600;
+  font-size: 15px;
+  color: hsl(125, 35%, 40%);
+}
+
+.privacyToggle {
+  border-radius: 20px;
+  padding: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(200, 15%, 85%);
+  transition: transform 70ms ease-out;
+
+  & img {
+    opacity: 0.5;
+  }
+}
+
+.privacyToggle:active {
+  transform: scale(0.88);
+}
