@@ -47,8 +47,40 @@ function NavLabel({ privacyMode }: { privacyMode: boolean }) {
   const labelClass = privacyMode ? styles.navLabelInner : styles.navPremiumTag;
   return (
     <div className={styles.navLabel}>
-      <motion.div layout className={labelClass}>
-        <motion.div layout>{privacyMode ? "Home" : "PRIVATE"}</motion.div>
+      <motion.div className={labelClass}>
+        <AnimatePresence>
+          {privacyMode ? (
+            <motion.span
+              layout="position"
+              initial={{
+                scale: 0.9,
+              }}
+              animate={{
+                scale: 1,
+              }}
+              exit={{
+                scale: 1.1,
+              }}
+            >
+              Home
+            </motion.span>
+          ) : (
+            <motion.span
+              layout="position"
+              initial={{
+                scale: 0.9,
+              }}
+              animate={{
+                scale: 1,
+              }}
+              exit={{
+                scale: 1.1,
+              }}
+            >
+              PRIVATE
+            </motion.span>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
@@ -121,42 +153,29 @@ function BalanceAmount({
 }) {
   let val = value.split("").map((char, i) => {
     return (
-      <motion.span
-        key={i}
-        initial={{
-          translateY: 20,
-        }}
-        animate={{ translateY: 0 }}
-        exit={{
-          translateY: 20,
-        }}
-      >
-        {char}
-      </motion.span>
+      <AnimatePresence key={i}>
+        {privacyMode ? (
+          <motion.span
+            layoutId={`${i}span`}
+            initial={{
+              translateY: -20,
+              scale: 0.8,
+              opacity: 0.2,
+            }}
+            animate={{
+              translateY: 0,
+              scale: 1,
+              opacity: 1,
+            }}
+          >
+            ●
+          </motion.span>
+        ) : (
+          <motion.span layoutId={`${i}span`}>{char}</motion.span>
+        )}
+      </AnimatePresence>
     );
   });
 
-  let privateText = value.split("").map((char, i) => {
-    return (
-      <motion.span
-        key={i + 11000}
-        initial={{
-          translateY: 20,
-        }}
-        animate={{ translateY: 0 }}
-        exit={{
-          translateY: 20,
-          opacity: 0,
-        }}
-      >
-        ●
-      </motion.span>
-    );
-  });
-
-  return (
-    <motion.div className={styles.balanceAmount}>
-      <AnimatePresence>{privacyMode ? val : privateText}</AnimatePresence>
-    </motion.div>
-  );
+  return <motion.div className={styles.balanceAmount}>{val}</motion.div>;
 }
