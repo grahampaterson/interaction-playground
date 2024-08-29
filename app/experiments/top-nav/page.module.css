@@ -67,6 +67,7 @@
 .balanceAmount {
   font-size: 32px;
   font-weight: 550;
+  display: flex;
 }
 
 .changeAmount {

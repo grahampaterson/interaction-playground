@@ -7,6 +7,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <Link href="/experiments">Experiments</Link>
+      <Link href="/framer">Framer</Link>
     </main>
   );
 }

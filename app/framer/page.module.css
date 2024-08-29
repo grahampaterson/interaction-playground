@@ -1,0 +1,8 @@
+.linkBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    text-transform: capitalize;
+}

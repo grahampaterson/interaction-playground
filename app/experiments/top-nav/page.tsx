@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./page.module.css";
 import React from "react";
 import Image from "next/image";
+import { relative } from "path";
 
 export default function Page() {
   const [privacyMode, setPrivacyMode] = React.useState(false);
@@ -153,29 +154,51 @@ function BalanceAmount({
 }) {
   let val = value.split("").map((char, i) => {
     return (
-      <AnimatePresence key={i}>
-        {privacyMode ? (
-          <motion.span
-            layoutId={`${i}span`}
-            initial={{
-              translateY: -20,
-              scale: 0.8,
-              opacity: 0.2,
-            }}
-            animate={{
-              translateY: 0,
-              scale: 1,
-              opacity: 1,
-            }}
-          >
-            ●
-          </motion.span>
-        ) : (
-          <motion.span layoutId={`${i}span`}>{char}</motion.span>
-        )}
-      </AnimatePresence>
+      <motion.span
+        key={i}
+        animate={{
+          y: privacyMode ? 0 : 20,
+          opacity: privacyMode ? 1 : 0,
+        }}
+      >
+        {char}
+      </motion.span>
     );
   });
 
-  return <motion.div className={styles.balanceAmount}>{val}</motion.div>;
+  let privateDots = value.split("").map((char, i) => {
+    return (
+      <motion.div
+        key={i + 10}
+        style={{
+          width: "100%",
+          position: "relative",
+        }}
+        animate={{
+          scale: privacyMode ? 0 : 1.2,
+          rotate: privacyMode ? 0 : 180,
+          // opacity: privacyMode ? 0 : 10,
+        }}
+        transition={{
+          duration: 0.14,
+        }}
+      >
+        ٭
+      </motion.div>
+    );
+  });
+
+  return (
+    <motion.div className={styles.balanceAmount}>
+      {val}
+      <div
+        style={{
+          position: "absolute",
+          display: "flex",
+        }}
+      >
+        {privateDots}
+      </div>
+    </motion.div>
+  );
 }
