@@ -10,22 +10,20 @@ export default function Page() {
 
   let chars = "$34,213.21".split("").map((c, i) => {
     return (
-      <motion.div layout key={i} transition={{ duration: 0.14 }}>
+      <motion.div layout key={i} transition={{ duration: 0.21 }}>
         {toggle ? (
           c
-        ) : [",", "."].includes(c) || i > 6 ? (
-          <div
-            style={{
-              height: "32px",
-            }}
-          ></div>
+        ) : [",", ".", "$"].includes(c) || i > 6 ? (
+          ""
         ) : (
           <motion.div
             style={{
               scale: 0,
+              filter: "blur(2px)",
             }}
             animate={{
               scale: toggle ? 0 : 1,
+              filter: toggle ? "blur(2px)" : "blur(0px)",
             }}
           >
             ✽
@@ -64,7 +62,6 @@ export default function Page() {
               height="20"
             />
           )}
-          q
         </motion.div>
       </div>
     </div>
