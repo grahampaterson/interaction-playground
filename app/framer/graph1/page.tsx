@@ -71,7 +71,8 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
     },
   };
 
-  let net = (Math.random() * posX * 0.2 + posX) / 2;
+  let net = numSignificant((Math.random() * posX * 0.2 + posX) / 2);
+  let netAccurate = (Math.random() * posX * 0.2 + posX) / 2;
   let val = Math.random() * posX * 0.2 + posX;
 
   return (
@@ -95,13 +96,13 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
       <motion.div variants={item} className={styles.values}>
         <div className={styles.label}>Net Deposits</div>
         <motion.div
-          animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
+          // animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
           transition={{
             duration: 0.07,
           }}
           className={styles.val}
         >
-          {usd.format(net)}
+          {still ? usd.format(netAccurate) : usd.format(net)}
         </motion.div>
       </motion.div>
     </motion.div>
@@ -150,6 +151,14 @@ function Graph({
         className={styles.marker}
       ></motion.div>
     </motion.div>
+  );
+}
+
+function numSignificant(num: number) {
+  num = Math.floor(num);
+  return (
+    Math.floor(num / 10 ** (String(num).length - 2)) *
+    10 ** (String(num).length - 2)
   );
 }
 
