@@ -144,11 +144,7 @@ function Swipe() {
           width: -totalOffset,
         }}
         animate={{
-          marginLeft: animateWidth
-            ? animateWidth < gapWidth
-              ? 0
-              : undefined
-            : undefined,
+          marginLeft: animateWidth == 0 ? 0 : undefined,
           width: animateWidth,
           gap: primary ? "0px" : `${gapWidth}px`,
         }}
