@@ -12,7 +12,7 @@ import React, {
 
 let usd = Intl.NumberFormat("en-US", {
   style: "currency",
-  currency: "CAD",
+  currency: "USD",
   maximumFractionDigits: 2,
   minimumFractionDigits: 2,
 });
@@ -82,7 +82,7 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
       className={styles.hoverDetails}
     >
       <motion.div variants={item} className={styles.values}>
-        <div className={styles.label}>Portfolio Value</div>
+        <motion.div className={styles.label}>Portfolio Value</motion.div>
         <motion.div
           animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
           transition={{
@@ -94,7 +94,7 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
         </motion.div>
       </motion.div>
       <motion.div variants={item} className={styles.values}>
-        <div className={styles.label}>Net Deposits</div>
+        <motion.div className={styles.label}>Net Deposits</motion.div>
         <motion.div
           // animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
           transition={{
