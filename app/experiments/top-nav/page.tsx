@@ -48,41 +48,11 @@ function NavLabel({ privacyMode }: { privacyMode: boolean }) {
   const labelClass = privacyMode ? styles.navLabelInner : styles.navPremiumTag;
   return (
     <div className={styles.navLabel}>
-      <motion.div className={labelClass}>
-        <AnimatePresence>
-          {privacyMode ? (
-            <motion.span
-              layout="position"
-              initial={{
-                scale: 0.9,
-              }}
-              animate={{
-                scale: 1,
-              }}
-              exit={{
-                scale: 1.1,
-              }}
-            >
-              Home
-            </motion.span>
-          ) : (
-            <motion.span
-              layout="position"
-              initial={{
-                scale: 0.9,
-              }}
-              animate={{
-                scale: 1,
-              }}
-              exit={{
-                scale: 1.1,
-              }}
-            >
-              PRIVATE
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      {privacyMode ? (
+        <motion.div layout="position">Home</motion.div>
+      ) : (
+        <motion.div layout="position">PRIVATE</motion.div>
+      )}
     </div>
   );
 }
@@ -125,15 +95,15 @@ function PageTop({
           <motion.div
             initial={{
               opacity: 0,
-              translateX: -20,
+              translateY: 10,
             }}
             animate={{
               opacity: 1,
-              translateX: 0,
+              translateY: 0,
             }}
             exit={{
               opacity: 0,
-              translateX: 20,
+              translateY: 10,
             }}
             className={styles.changeAmount}
           >
@@ -177,6 +147,7 @@ function BalanceAmount({
         animate={{
           scale: privacyMode ? 0 : 1.2,
           rotate: privacyMode ? 0 : 180,
+          y: privacyMode ? -20 : 0,
           // opacity: privacyMode ? 0 : 10,
         }}
         transition={{

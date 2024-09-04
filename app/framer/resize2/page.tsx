@@ -8,13 +8,36 @@ import Image from "next/image";
 export default function Page() {
   const [toggle, setToggle] = React.useState(true);
 
+  const emoji = ["🫢", "💸", "🙈", "🫣", "🤫", "🫥", "🤐", "🥸"];
+
   let chars = "$34,213.21".split("").map((c, i) => {
     return (
       <motion.div layout key={i} transition={{ duration: 0.21 }}>
         {toggle ? (
-          c
+          <motion.div
+            style={{
+              scale: 0,
+              filter: "blur(2px)",
+            }}
+            animate={{
+              scale: toggle ? 1 : 0,
+              filter: toggle ? "blur(0px)" : "blur(10px)",
+            }}
+          >
+            {c}
+          </motion.div>
         ) : [",", ".", "$"].includes(c) || i > 6 ? (
-          ""
+          <motion.div
+            style={{
+              scale: 0,
+              filter: "blur(2px)",
+            }}
+            animate={{
+              scale: toggle ? 1 : 1,
+              opacity: toggle ? 1 : 0,
+              // filter: toggle ? "blur(0px)" : "blur(4px)",
+            }}
+          ></motion.div>
         ) : (
           <motion.div
             style={{
@@ -23,10 +46,10 @@ export default function Page() {
             }}
             animate={{
               scale: toggle ? 0 : 1,
-              filter: toggle ? "blur(2px)" : "blur(0px)",
+              filter: toggle ? "blur(5px)" : "blur(0px)",
             }}
           >
-            ✽
+            {emoji[Math.floor(Math.random() * emoji.length)]}
           </motion.div>
         )}
       </motion.div>
