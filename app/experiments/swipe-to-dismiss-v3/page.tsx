@@ -33,7 +33,7 @@ function Swipe({ numBtns }: { numBtns: number }) {
   ); // animates container width on release otherwise width is controlled by drag
   const [primary, setPrimary] = React.useState(false); // if the "primary action" threshold is met
 
-  const actionsBtns = 3; // number of action buttons
+  const actionsBtns = numBtns; // number of action buttons
   const minWidth = 74; // min width of action buttons
   const gapWidth = 8; // gap between actions and tile
   const primaryTriggerRatio = 0.8; // totoal move ratio to trigger primary action
