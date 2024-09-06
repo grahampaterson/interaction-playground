@@ -71,9 +71,24 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
     },
   };
 
-  let net = numSignificant((Math.random() * posX * 0.2 + posX) / 2);
-  let netAccurate = (Math.random() * posX * 0.2 + posX) / 2;
-  let val = Math.random() * posX * 0.2 + posX;
+  let net = numSignificant(((Math.random() * posX * 0.2 + posX) / 2) * 100);
+  let netAccurate = ((Math.random() * posX * 0.2 + posX) / 2) * 100;
+  let val = Math.random() * posX * 0.2 + posX * 100;
+
+  let chars = usd
+    .format(val)
+    .split("")
+    .map((c, i) => {
+      let amnt = i > 2 ? i / 4 : 0;
+      return (
+        <motion.span
+          animate={{ filter: still ? "blur(0px)" : `blur(${amnt}px)` }}
+          key={i}
+        >
+          {c}
+        </motion.span>
+      );
+    });
 
   return (
     <motion.div
@@ -81,20 +96,23 @@ function GraphDetails({ hovering, posX }: { hovering: boolean; posX: number }) {
       animate={hovering ? "show" : "hidden"}
       className={styles.hoverDetails}
     >
-      <motion.div variants={item} className={styles.values}>
-        <motion.div className={styles.label}>Portfolio Value</motion.div>
+      <motion.div layout variants={item} className={styles.values}>
+        <motion.div layout className={styles.label}>
+          Portfolio Value
+        </motion.div>
         <motion.div
-          animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
           transition={{
             duration: 0.07,
           }}
           className={styles.val}
         >
-          {usd.format(val)}
+          <span>{chars}</span>
         </motion.div>
       </motion.div>
-      <motion.div variants={item} className={styles.values}>
-        <motion.div className={styles.label}>Net Deposits</motion.div>
+      <motion.div layout variants={item} className={styles.values}>
+        <motion.div layout className={styles.label}>
+          Net Deposits
+        </motion.div>
         <motion.div
           // animate={{ filter: still ? "blur(0px)" : "blur(2px)" }}
           transition={{
