@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200, 15%, 85%);
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  aspect-ratio: 375/812;
+  height: 90vh;
+  background-color: hsl(200, 15%, 95%);
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 200px;
+  position: relative;
+}
+
+.box {
+  padding: 16px;
+  background: hsl(200, 15%, 5%);
+  color: white;
+  /* border-radius: 1000px; */
+  overflow: hidden;
+}
+
+.inner {
+  width: 20px;
+  height: 20px;
+  background-color: hsl(0, 100%, 50%);
+}
+
+.textWrap {
+  display: flex;
+}

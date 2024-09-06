@@ -15,14 +15,16 @@ export default function Page() {
     <main className={styles.main}>
       <div className={styles.screen}>
         <div className={styles.content}>
-          <Swipe />
+          <Swipe numBtns={3} />
+          <Swipe numBtns={2} />
+          <Swipe numBtns={1} />
         </div>
       </div>
     </main>
   );
 }
 
-function Swipe() {
+function Swipe({ numBtns }: { numBtns: number }) {
   const [endOffset, setEndOffset] = React.useState(0); // the last offset of the tile
   const [totalOffset, setTotalOffset] = React.useState(0); // the current offset of the tile
   const swipeRef = React.useRef(null); // a reference to the swipe container
@@ -158,16 +160,22 @@ function Swipe() {
         <AnimatePresence>
           {!primary && (
             <>
-              <ActionBtn minWidth={minWidth} primary={primary}>
-                Far Left
-              </ActionBtn>
-              <ActionBtn minWidth={minWidth} primary={primary}>
-                Left
-              </ActionBtn>
+              {numBtns > 2 && (
+                <ActionBtn minWidth={minWidth} primary={primary}>
+                  Far Left
+                </ActionBtn>
+              )}
+              {numBtns > 1 && (
+                <ActionBtn minWidth={minWidth} primary={primary}>
+                  Left
+                </ActionBtn>
+              )}
             </>
           )}
         </AnimatePresence>
-        <ActionBtn minWidth={minWidth}>Right</ActionBtn>
+        <ActionBtn minWidth={minWidth} primary={primary}>
+          Right
+        </ActionBtn>
       </motion.div>
     </motion.div>
   );
@@ -186,8 +194,13 @@ function ActionBtn({
     <motion.div
       style={{
         minWidth: `${minWidth}px`,
+        padding: primary ? "8px" : "0px",
       }}
-      animate={{ width: "100%", minWidth: `${minWidth}px` }}
+      animate={{
+        width: "100%",
+        minWidth: `${minWidth}px`,
+        justifyContent: primary ? "flex-start" : "center",
+      }}
       initial={{
         width: "0%",
         minWidth: "0px",
