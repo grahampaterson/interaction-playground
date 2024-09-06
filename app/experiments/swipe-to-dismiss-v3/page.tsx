@@ -195,11 +195,11 @@ function ActionBtn({
       style={{
         minWidth: `${minWidth}px`,
         padding: primary ? "8px" : "0px",
+        justifyContent: primary ? "flex-start" : "center",
       }}
       animate={{
         width: "100%",
         minWidth: `${minWidth}px`,
-        justifyContent: primary ? "flex-start" : "center",
       }}
       initial={{
         width: "0%",
@@ -208,7 +208,14 @@ function ActionBtn({
       exit={{ width: "0%", minWidth: "0px" }}
       className={styles.actionBtn}
     >
-      {children}
+      <motion.div
+        layout
+        transition={{
+          layout: { duration: primary ? 0.07 : 0 },
+        }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 }
