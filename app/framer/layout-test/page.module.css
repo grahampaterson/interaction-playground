@@ -1,0 +1,37 @@
+.main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200, 15%, 85%);
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  aspect-ratio: 375/812;
+  height: 90vh;
+  background-color: hsl(200, 15%, 95%);
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 200px;
+  position: relative;
+  gap: 16px;
+}
+
+.testCube {
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+  border-radius: 16px;
+  position: relative;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background-color: teal;
+  border-radius: 16px;
+  position: relative;
+}
