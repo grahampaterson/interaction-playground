@@ -14,7 +14,7 @@
   background-color: hsl(200, 15%, 95%);
   border-radius: 32px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   perspective: 200px;
   position: relative;
