@@ -24,5 +24,5 @@ export default function Page() {
     );
   });
 
-  return <div className={styles.linkBlock}>{links}</div>;
+  return <div className={styles.linkBlock}>{/* {links} */}</div>;
 }
