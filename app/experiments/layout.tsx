@@ -35,8 +35,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <div className={styles.linkBlock}>{links}</div>
-      <body>{children}</body>
+      <body>
+        <div className={styles.linkBlock}>{links}</div>
+        {children}
+      </body>
     </html>
   );
 }
