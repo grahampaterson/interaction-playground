@@ -8,6 +8,7 @@ export default async function Home() {
     <main className={styles.main}>
       <Link href="/experiments">Experiments</Link>
       <Link href="/framer">Framer</Link>
+      <Link href="/snippets">Snippets</Link>
     </main>
   );
 }
