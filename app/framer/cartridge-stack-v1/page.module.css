@@ -24,7 +24,6 @@
   position: absolute;
   width: 375px;
   border: 1px solid blue;
-  padding: 16px;
   background-color: #fff;
-  box-shadow: 10px 5px 5px red;
+  /* box-shadow: 10px 5px 5px red; */
 }
