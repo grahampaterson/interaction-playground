@@ -23,8 +23,14 @@ export default function Page() {
         handleClick={(e: MouseEvent) =>
           i == active ? setActive(undefined) : setActive(i)
         }
+        handleDragEnd={(e: MouseEvent) => {
+          let newPages = [...pages];
+          newPages.splice(i, 1);
+          newPages.push(i);
+          setPages(newPages);
+        }}
         screenRef={screenRef}
-        key={i}
+        key={p}
       />
     );
   });
@@ -41,20 +47,30 @@ export default function Page() {
 function PageView({
   active,
   handleClick,
+  handleDragEnd,
   screenRef,
   children,
 }: {
   active: boolean;
   handleClick: any;
+  handleDragEnd: any;
   screenRef: any;
   children?: React.ReactNode;
 }) {
+  const [dragged, setDragged] = React.useState(false);
   const [animate, setAnimate] = React.useState({
     rotate: Math.random() * 90 - 45,
   });
+  const [zIndex, setZIndex] = React.useState(0);
 
   const expanded = {
     minHeight: 812,
+    position: "fixed",
+    rotate: 0,
+    left: 0,
+    top: 0,
+    x: 0,
+    y: 0,
   };
   const small = {
     scale: 0.5,
@@ -72,13 +88,27 @@ function PageView({
         setAnimate({
           rotate: animate.rotate + info.delta.x / 10 + info.delta.y / 10,
         });
+        !dragged && setDragged(true);
       }}
       className={styles.cartridge}
       style={{
         ...animate,
         borderRadius: 32,
+        zIndex: zIndex,
       }}
       animate={active ? expanded : small}
+      onMouseDown={() => {
+        setDragged(false), setZIndex(10);
+      }}
+      onMouseUp={() => {
+        if (dragged) {
+          setDragged(false);
+          handleDragEnd();
+          setZIndex(0);
+        } else {
+          handleClick();
+        }
+      }}
     >
       <h1>Page Title</h1>
       <p>
