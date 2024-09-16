@@ -10,11 +10,11 @@ import Underline from "./components/underline";
 export default function Page() {
   // eslint-disable-next-line react/jsx-key
   const snippets = [
-    <Underline />,
-    <LayoutSwap />,
-    <TextSwap2 />,
-    <TextSwap />,
-    <LetterResize />,
+    <Underline key={1} />,
+    <LayoutSwap key={2} />,
+    <TextSwap2 key={3} />,
+    <TextSwap key={4} />,
+    <LetterResize key={5} />,
   ];
 
   let wrapped = snippets.map((c, i) => {
