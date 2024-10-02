@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200, 15%, 95%);
+  gap: 12px;
+}
+
+.container {
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.trackInner {
+  transition: left 300ms ease-out;
+  position: relative;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  background-color: hsl(200, 15%, 100%);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
