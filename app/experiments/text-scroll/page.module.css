@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.textStyle {
+  font-size: 200px;
+  font-weight: 600;
+  position: relative;
+}
+
+.cycleButton {
+  z-index: 100;
+}
