@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type direction = "up" | "down";
 
@@ -38,44 +38,71 @@ function TextBox({
 }) {
   const [currentValue, setCurrentValue] = useState(value);
   const [previousValue, setPreviousValue] = useState(value);
-  const [transition, setTransition] = useState(0);
+  const textA = useRef(null);
+  const textB = useRef(null);
+  const timer = useRef(0);
+  const transY = useRef(0);
 
   useEffect(() => {
     if (value == currentValue) {
       return;
     }
+    transY.current = 0;
     setPreviousValue(currentValue);
     setCurrentValue(value);
     console.log(direction);
-    if (direction == "up") {
-      setTransition(200);
-    } else {
-      setTransition(-200);
-    }
   }, [value, currentValue, direction]);
 
-  function printValues() {
-    console.log(`${value} ${previousValue}`);
-  }
+  const speed = 1;
+
+  useEffect(() => {
+    if (value == currentValue) {
+      return;
+    }
+    clearInterval(timer.current);
+    timer.current = setInterval(() => {
+      console.log(transY.current);
+      if (Math.abs(transY.current) == 100) {
+        clearInterval(timer.current);
+        return;
+      }
+      let newVal;
+      if (direction == "up") {
+        newVal = transY.current - speed;
+        transY.current = newVal < -100 ? -100 : newVal;
+      } else {
+        newVal = transY.current - speed;
+        transY.current = newVal > 100 ? 100 : transY.current + speed;
+      }
+
+      if (textA.current == null || textB.current == null) {
+        return;
+      }
+      textA.current.style.transform = `translateY(${
+        newVal >= 0 ? newVal - 100 : newVal + 100
+      }%)`;
+      textA.current.style.opacity = Math.abs(newVal / 100);
+      textB.current.style.transform = `translateY(${newVal}%)`;
+      textB.current.style.opacity = 1 - Math.abs(newVal / 100);
+    }, 1);
+  }, [value, currentValue, direction]);
 
   return (
     <div className={styles.textStyle}>
       <div
         style={{
-          top: transition,
-          transition: "top 1000ms ease",
           position: "relative",
         }}
+        ref={textA}
       >
         {value}
       </div>
       <div
         style={{
-          opacity: 0.3,
           position: "absolute",
-          top: direction == "down" ? "100%" : "-100%",
+          top: 0,
         }}
-        // onClick={printValues}
+        ref={textB}
       >
         {previousValue}
       </div>
